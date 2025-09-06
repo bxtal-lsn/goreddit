@@ -9,11 +9,11 @@ type Thread struct {
 }
 
 type Post struct {
-	ID      uuid.UUID `db:"id"`
-	TreadID uuid.UUID `db:"thread_id"`
-	Title   string    `db:"title"`
-	Content string    `db:"content"`
-	Votes   int       `db:"votes"`
+	ID       uuid.UUID `db:"id"`
+	ThreadID uuid.UUID `db:"thread_id"`
+	Title    string    `db:"title"`
+	Content  string    `db:"content"`
+	Votes    int       `db:"votes"`
 }
 
 type Comment struct {
@@ -45,4 +45,10 @@ type CommentStore interface {
 	CreateComment(t *Comment) error
 	UpdateComment(t *Comment) error
 	DeleteComment(id uuid.UUID) error
+}
+
+type Store interface {
+	ThreadStore
+	PostStore
+	CommentStore
 }
